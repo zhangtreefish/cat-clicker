@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--This is my play ground -->
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+
+
+		<style>
+			@media screen and (max-width: 400px) {
+           		body {background-color: red;
+           		}
+            }
+
+        	body {background-color: green;}
+
+			@media screen and (min-width: 600px) {
+        		body {background-color: blue;
+        		}
+      		}
+      	</style>
+
+		<title> cat clicker page </title>
+	</head>
+	<body>
+		<div class="container">
+			<h1 class="text-center"> Click the cute cat! <!--including text-center centered "Why?"; switching from header to h1 changed font size of why -->
+			</h1>
+
+			<ul id="cats">
+			<li>
+				<h3 class="cat-name"> catName </h3>
+				<img id="cat-pic" src="http://placekitten.com/g/200/300" alt="cat1" onclick="count()">
+				<p class="click-counter"> Click the cat!</p>
+			</li>
+
+			<script>
+			     var clickCount=0;
+			     function count(){
+				    clickCount++;
+				    document.getElementsByClassName("click-counter")[0].textContent="Meow! You clicked me "+clickCount+ " times!";
+				  	}
+			</script>
+		</div>
+	</body>
+</html>
