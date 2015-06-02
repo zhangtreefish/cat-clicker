@@ -4,42 +4,22 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<title> cat clicker page </title>
-		<style>
-			@media screen and (max-width: 399px) {
-           		body {background-color: red;
-           		}
-            }
-        	@media screen and (max-width: 599px; min-width:400px){
-        		body {background-color: green;
-        		}
-        	}
-			@media screen and (min-width: 600px) {
-        		body {background-color: #00ff00;
-        		}
-      		}
-      	</style>
-      	<script src="js/jQuery.js"></script>
+		<script src="js/jQuery.js"></script>
 	</head>
 
 	<body>
 		<div class="container">
-			<h1 class="text-center"> Click the cute cats! <!--including text-center centered "Why?"; switching from header to h1 changed font size of why -->
+			<h1 class="text-center"> Click the cute cats!
 			</h1>
-
 			<div id="cats">Cats Here</div>
-			<!--<li>
-				<h3 id="cat-name"> </h3>
-				<img id="cat-pic" src="" alt="cat" onclick="count()">
-				 <p id="click-counter"> You have clicked <span id="num"> </span> times!
-			</li></p>-->
 
 			<script>
-			     var Cat=function(name,pic,clickCount){
+			     var Cat=function(name,pic){
 			     	this.name=name;
 			     	this.pic=pic;
 			     }
-			     var clickCount=0;
-			      Cat.prototype.display=function(){//need to pass parameters!
+
+			     Cat.prototype.display=function(){//need to pass parameters!
 			      	console.log("<p>"+this.name+"</p>");
 			      	$("#cats").append("<p>"+this.name+"</p>");
 			      	$("#cats").append('<img alt="cat" class="cat-pic" src="'+this.pic+'">');
@@ -54,10 +34,14 @@
 			      var catMsgs=document.getElementsByClassName("msg");
 			      console.log(catEls);
 
-			      for(var i=0; i<catEls.length; i++){
-			      		catEls[i].addEventListener('click',function(){clickCount++;});
-			     		$(catMsgs[i]).append('<p>  '+clickCount+' times</p>');
-			     }
+			      var clickCount=0;
+			      var count=function(){
+			      		for(var i=0; i<catEls.length; i++){
+				      		catEls[i].addEventListener('click',function(){clickCount++;});
+				      		$(catMsgs[i]).append('<p>'+clickCount+' times</p>');
+			     		}//for
+			     }; //count
+			     count();
 
 			</script>
 		</div>
