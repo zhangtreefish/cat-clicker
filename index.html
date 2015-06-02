@@ -1,44 +1,64 @@
 <!DOCTYPE html>
-<!--This is my play ground -->
 <html lang="en">
 	<head>
+		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-
-
+		<title> cat clicker page </title>
 		<style>
-			@media screen and (max-width: 400px) {
+			@media screen and (max-width: 399px) {
            		body {background-color: red;
            		}
             }
-
-        	body {background-color: green;}
-
+        	@media screen and (max-width: 599px; min-width:400px){
+        		body {background-color: green;
+        		}
+        	}
 			@media screen and (min-width: 600px) {
-        		body {background-color: blue;
+        		body {background-color: #00ff00;
         		}
       		}
       	</style>
-
-		<title> cat clicker page </title>
+      	<script src="js/jQuery.js"></script>
 	</head>
+
 	<body>
 		<div class="container">
-			<h1 class="text-center"> Click the cute cat! <!--including text-center centered "Why?"; switching from header to h1 changed font size of why -->
+			<h1 class="text-center"> Click the cute cats! <!--including text-center centered "Why?"; switching from header to h1 changed font size of why -->
 			</h1>
 
-			<ul id="cats">
-			<li>
-				<h3 class="cat-name"> catName </h3>
-				<img id="cat-pic" src="http://placekitten.com/g/200/300" alt="cat1" onclick="count()">
-				<p class="click-counter"> Click the cat!</p>
-			</li>
+			<div id="cats">Cats Here</div>
+			<!--<li>
+				<h3 id="cat-name"> </h3>
+				<img id="cat-pic" src="" alt="cat" onclick="count()">
+				 <p id="click-counter"> You have clicked <span id="num"> </span> times!
+			</li></p>-->
 
 			<script>
+			     var Cat=function(name,pic,clickCount){
+			     	this.name=name;
+			     	this.pic=pic;
+			     }
 			     var clickCount=0;
-			     function count(){
-				    clickCount++;
-				    document.getElementsByClassName("click-counter")[0].textContent="Meow! You clicked me "+clickCount+ " times!";
-				  	}
+			      Cat.prototype.display=function(){//need to pass parameters!
+			      	console.log("<p>"+this.name+"</p>");
+			      	$("#cats").append("<p>"+this.name+"</p>");
+			      	$("#cats").append('<img alt="cat" class="cat-pic" src="'+this.pic+'">');
+			      	$("#cats").append('<p class="msg">Click Count: </p>');
+			      }
+			      var cat1=new Cat("cat1","http://placekitten.com/g/200/300");//need ""around cat1!
+			      var cat2=new Cat("cat2","https://www.kasandbox.org/programming-images/misc/cat-walk.gif");
+			      cat1.display();
+			      cat2.display();
+
+			      var catEls=document.getElementsByClassName("cat-pic");
+			      var catMsgs=document.getElementsByClassName("msg");
+			      console.log(catEls);
+
+			      for(var i=0; i<catEls.length; i++){
+			      		catEls[i].addEventListener('click',function(){clickCount++;});
+			     		$(catMsgs[i]).append('<p>  '+clickCount+' times</p>');
+			     }
+
 			</script>
 		</div>
 	</body>
